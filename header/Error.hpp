@@ -5,7 +5,7 @@
 ** Login   <mathon_j@mathonj>
 ** 
 ** Started on  Tue Mar 10 18:21:04 2015 Jérémy MATHON
-** Last update Tue Mar 10 18:22:27 2015 Jérémy MATHON
+** Last update Wed Mar 11 10:37:06 2015 Jérémy MATHON
 */
 
 #ifndef ERROR_HPP_
@@ -21,6 +21,6 @@ public:
   ~CoreError() throw() {};
   
   const char *what () const throw();
-}
+};
 
 #endif /* !ERROR_HPP_ */
