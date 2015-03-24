@@ -5,7 +5,7 @@
 ** Login   <mathon_j@mathonj>
 ** 
 ** Started on  Wed Mar 11 10:37:36 2015 Jérémy MATHON
-// Last update Tue Mar 24 15:34:33 2015 simon hure
+// Last update Tue Mar 24 15:46:31 2015 Valentin Cardon
 */
 
 #ifndef SNAKE_HPP_
@@ -15,27 +15,7 @@
 # include	<list>
 # include	<cstdlib>
 # include	<time.h>
-
-typedef enum	e_move
-  {
-    UP,
-    RIGHT,
-    DOWN,
-    LEFT
-  }		t_move;
-
-typedef struct	s_snake
-{
-  int		x;
-  int		y;
-  t_move	move;
-}		t_snake;
-
-typedef struct	s_food
-{
-  int		x;
-  int		y;
-}		t_food;
+# include	"IDisplay.hpp"
 
 class	Snake : public IDisplay {
 private:

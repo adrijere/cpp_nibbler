@@ -5,7 +5,7 @@
 ## Login   <mathon_j@epitech.net>
 ## 
 ## Started on  Tue Mar 24 09:51:26 2015 Jérémy MATHON
-## Last update Tue Mar 24 15:26:23 2015 simon hure
+## Last update Tue Mar 24 15:29:08 2015 Valentin Cardon
 ##
 
 BIN		=	nibbler
@@ -49,7 +49,7 @@ $(OPENGL_NAME):		$(OPENGL_OBJ)
 
 $(NCURSES_NAME):	$(NCURSES_OBJ)
 			$(CC) $(NCURSES_OBJ) -o $(NCURSES_NAME) $(NCURSES_LDFLAGS)
-			clang++ $(SRC) -ldl -I ./ -o $(BIN)
+			g++ $(SRC) -ldl -I ./ -o $(BIN)
 
 clean:
 			rm -f $(SDL_OBJ) $(NCURSES_OBJ) $(OPENGL_OBJ) $(BIN)
