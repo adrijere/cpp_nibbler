@@ -5,17 +5,26 @@
 ** Login   <mathon_j@mathonj>
 ** 
 ** Started on  Wed Mar 11 10:39:29 2015 Jérémy MATHON
-// Last update Tue Mar 24 15:23:46 2015 simon hure
+// Last update Tue Mar 24 15:55:34 2015 simon hure
 */
 
 #include	"../header/Snake.hpp"
 
 Snake::Snake(int const &w, int const &h) : width(w), height(h)
 {
-  this->snake.push_front((w % 2) - 2, h % 2);
-  this->snake.push_front((w % 2) - 1, h % 2);
-  this->snake.push_front(w % 2), h % 2);
-  this->snake.push_front((w % 2) + 1, h % 2);
+  t_snake tmp;
+  tmp.x = (w % 2) - 2;
+  tmp.y = h % 2;
+  this->snake.push_front(tmp);
+  tmp.x = (w % 2) - 1;
+  tmp.y = h % 2;
+  this->snake.push_front(tmp);
+  tmp.x = (w % 2);
+  tmp.y = h % 2;
+  this->snake.push_front(tmp);
+  tmp.x = (w % 2) + 1;
+  tmp.y = h % 2;
+  this->snake.push_front(tmp);
 }
 
 const	std::list<t_snake>	Snake::&get_snake() const
@@ -36,21 +45,27 @@ void				Snake::init_food(int const &x, int const &y)
   this->_food.y = rand() % y;
   for (it = this->snake.begin(); it != this->snake.end(); ++it)
     {
-      if (it.x == this->_food.x && it.y == this->_food.y)
+      if (it->x == this->_food.x && it->y == this->_food.y)
 	this->init_food(x, y);
     }
 }
 
 void				Snake::check_food(int const &x, int const &y)
 {
+  t_snake tmp;
+
   if (this->get_snake().front().x == this->get_food().x && this->get_snake().front().x == this->get_food().y)
     {
       this->init_food(x, y);
-      this->snake.push_front(x, y);
+      tmp.x = x;
+      tmp.y = y;
+      this->snake.push_front(tmp);
     }
   else
     {
-      this->snake.push_front(x, y);
+      tmp.x = x;
+      tmp.y = y;
+      this->snake.push_front(tmp);
       this->snake.pop_back();
     }
 }

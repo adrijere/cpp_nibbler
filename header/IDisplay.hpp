@@ -5,14 +5,13 @@
 ** Login   <mathon_j@mathonj>
 ** 
 ** Started on  Wed Mar 11 10:36:06 2015 Jérémy MATHON
-// Last update Tue Mar 24 15:46:09 2015 Valentin Cardon
+// Last update Tue Mar 24 15:50:21 2015 simon hure
 */
 
 #ifndef IDISPLAY_HPP_
 # define IDISPLAY_HPP_
 
 # include	<iostream>
-# include	"../sdl/sdl.hpp"
 
 typedef enum	e_move
   {
