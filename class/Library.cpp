@@ -5,7 +5,7 @@
 ** Login   <mathon_j@mathonj>
 ** 
 ** Started on  Tue Mar 24 09:16:12 2015 Jérémy MATHON
-// Last update Tue Mar 24 15:21:40 2015 simon hure
+// Last update Tue Mar 24 15:30:26 2015 simon hure
 */
 
 #include	<string>
@@ -43,7 +43,7 @@ int		Init::load_library(int const &width, int const &height, std::string const n
     return (1);
   dlerror();
   create_t *create_display = (create_t*)dlsym(lib, "create");
-  char const dlsym_error = dlerror();
+  char *dlsym_error = dlerror();
   if ((check_symbol(dlsym_error)) == 1)
     return (1);
   IDisplay *Win = create_display(width, height);

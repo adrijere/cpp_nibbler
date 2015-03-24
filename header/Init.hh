@@ -5,7 +5,7 @@
 // Login   <hure_s@epitech.net>
 // 
 // Started on  Tue Mar 24 13:03:50 2015 simon hure
-// Last update Tue Mar 24 15:24:50 2015 simon hure
+// Last update Tue Mar 24 15:29:47 2015 simon hure
 //
 
 #ifndef _INIT_HH_
@@ -25,7 +25,7 @@ public:
   int	check_arg(int const &x, int const &y, const std::string &lib);
   int	load_library(int const &width, int const &height, std::string const namelib);
   int	check_symbol(const char *dlsym_error);
-  int	chck_lib(const void *lib);
+  int	check_lib(const void *lib);
   int	loop_game(int const &, int const &, IDisplay *);
 };
 

@@ -5,7 +5,7 @@
 ** Login   <mathon_j@mathonj>
 ** 
 ** Started on  Wed Mar 11 10:37:36 2015 Jérémy MATHON
-** Last update Tue Mar 24 09:30:38 2015 Jérémy MATHON
+// Last update Tue Mar 24 15:34:33 2015 simon hure
 */
 
 #ifndef SNAKE_HPP_
@@ -13,6 +13,7 @@
 
 # include	<iostream>
 # include	<list>
+# include	<cstdlib>
 # include	<time.h>
 
 typedef enum	e_move
