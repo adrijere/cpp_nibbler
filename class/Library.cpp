@@ -5,16 +5,14 @@
 ** Login   <mathon_j@mathonj>
 ** 
 ** Started on  Tue Mar 24 09:16:12 2015 Jérémy MATHON
-** Last update Tue Mar 24 09:27:56 2015 Jérémy MATHON
+// Last update Tue Mar 24 15:21:40 2015 simon hure
 */
 
 #include	<string>
 #include	<dlfcn.h>
-#include	"IDisplay.hpp"
+#include	"../header/Init.hh"
 
-int		loop_game(int const &, int const &, IDisplay *);
-
-int		check_lib(const void *lib)
+int		Init::check_lib(const void *lib)
 {
   if (!lib)
     {
@@ -24,7 +22,7 @@ int		check_lib(const void *lib)
   return (0);
 }
 
-int		check_symbol(const char *dlsysm_error)
+int		Init::check_symbol(const char *dlsysm_error)
 {
   if (dlsysm_error)
     {
@@ -34,7 +32,7 @@ int		check_symbol(const char *dlsysm_error)
   return (0);
 }
 
-int		load_library(int const &width, int const &height, std::string const namelib)
+int		Init::load_library(int const &width, int const &height, std::string const namelib)
 {
   void		*lib;
 

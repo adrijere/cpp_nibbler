@@ -5,7 +5,7 @@
 ## Login   <mathon_j@epitech.net>
 ## 
 ## Started on  Tue Mar 24 09:51:26 2015 Jérémy MATHON
-## Last update Tue Mar 24 09:59:31 2015 Jérémy MATHON
+## Last update Tue Mar 24 15:26:23 2015 simon hure
 ##
 
 BIN		=	nibbler
@@ -20,6 +20,8 @@ NCURSES_PATH	=	./ncurses/
 
 SRC		=	./class/Library.cpp	\
 			./class/Snake.cpp	\
+			./class/main.cpp	\
+			./class/Init.cpp
 
 SDL_SRC		=
 OPENGL_SRC	=
@@ -37,7 +39,7 @@ SDL_LDFLAGS	+=	-shared -lSDL -lSDL_image
 OPENGL_LDFLAGS	+=	-shared -lSDl -lGL -lGLU
 NCURSES_LDFLAGS	+=	-shared -lncurses
 
-all:			$(SDL_NAME) $(OPENGL_NAME) $(NCURSES_NAME)
+all:			$(NCURSES_NAME) $(SDL_NAME) $(OPENGL_NAME)
 
 $(SDL_NAME):		$(SDL_OBJ)
 			$(CC) $(SDL_OBJ) -o $(SDL_NAME) $(SDL_LDFLAGS)
@@ -47,7 +49,7 @@ $(OPENGL_NAME):		$(OPENGL_OBJ)
 
 $(NCURSES_NAME):	$(NCURSES_OBJ)
 			$(CC) $(NCURSES_OBJ) -o $(NCURSES_NAME) $(NCURSES_LDFLAGS)
-			g++ $(SRC) -ldl -I ./ -o $(BIN)
+			clang++ $(SRC) -ldl -I ./ -o $(BIN)
 
 clean:
 			rm -f $(SDL_OBJ) $(NCURSES_OBJ) $(OPENGL_OBJ) $(BIN)
