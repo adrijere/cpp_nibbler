@@ -5,7 +5,7 @@
 ** Login   <mathon_j@mathonj>
 ** 
 ** Started on  Wed Mar 11 10:39:29 2015 Jérémy MATHON
-** Last update Tue Mar 24 09:18:51 2015 Jérémy MATHON
+** Last update Tue Mar 24 15:09:28 2015 Jérémy MATHON
 */
 
 #include	"Snake.hpp"
@@ -90,7 +90,7 @@ int				loop_game(int const &x, int const &y, IDisplay *Window)
 	tmp.y++;
       if (snake.check_eat(x, y) == -1)
 	{
-	  std::cout << "score : " << python.get_snake().size() - 4 << std::endl;
+	  std::cout << "score : " << snake.get_snake().size() - 4 << std::endl;
 	  return (-1);
 	}
       snake.check_food(x, y, tmp);
