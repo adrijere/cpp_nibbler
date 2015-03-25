@@ -5,7 +5,7 @@
 ** Login   <mathon_j@mathonj>
 ** 
 ** Started on  Wed Mar 11 10:37:36 2015 Jérémy MATHON
-// Last update Wed Mar 25 11:25:18 2015 Valentin Cardon
+// Last update Wed Mar 25 12:03:11 2015 simon hure
 */
 
 #ifndef SNAKE_HPP_
@@ -17,7 +17,8 @@
 # include	<time.h>
 # include	"IDisplay.hpp"
 
-class	Snake : public IDisplay {
+class	Snake 
+{
 private:
   int			width;
   int			height;
