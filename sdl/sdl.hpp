@@ -5,7 +5,7 @@
 // Login   <cardon_v@epitech.net>
 // 
 // Started on  Tue Mar 24 11:37:46 2015 Valentin Cardon
-// Last update Tue Mar 24 15:38:53 2015 Valentin Cardon
+// Last update Wed Mar 25 11:41:33 2015 Valentin Cardon
 //
 
 #ifndef		_SDL_HPP_
@@ -23,12 +23,10 @@ class		create : public IDisplay
 private:
   SDL_Surface	*screen;
   SDL_Event	event;
-  int		height;
-  int		width;
 
 public:
   create();
-  void	init();  
+  int	init();
   ~create();
 };
 

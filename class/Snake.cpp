@@ -5,7 +5,7 @@
 ** Login   <mathon_j@mathonj>
 ** 
 ** Started on  Wed Mar 11 10:39:29 2015 Jérémy MATHON
-// Last update Tue Mar 24 15:55:34 2015 simon hure
+// Last update Wed Mar 25 11:25:11 2015 Valentin Cardon
 */
 
 #include	"../header/Snake.hpp"
@@ -27,12 +27,12 @@ Snake::Snake(int const &w, int const &h) : width(w), height(h)
   this->snake.push_front(tmp);
 }
 
-const	std::list<t_snake>	Snake::&get_snake() const
+const	std::list<t_snake>	Snake::get_snake() const
 {
   return (this->snake);
 }
 
-const	t_food			Snake::&get_food() const
+const	t_food			Snake::get_food() const
 {
   return (this->_food);
 }

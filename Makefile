@@ -5,7 +5,7 @@
 ## Login   <mathon_j@epitech.net>
 ## 
 ## Started on  Tue Mar 24 09:51:26 2015 Jérémy MATHON
-## Last update Tue Mar 24 15:29:08 2015 Valentin Cardon
+## Last update Wed Mar 25 11:58:28 2015 Valentin Cardon
 ##
 
 BIN		=	nibbler
@@ -23,7 +23,7 @@ SRC		=	./class/Library.cpp	\
 			./class/main.cpp	\
 			./class/Init.cpp
 
-SDL_SRC		=
+SDL_SRC		=	./sdl/init_sdl.cpp	\
 OPENGL_SRC	=
 NCURSES_SRC	=
 
@@ -49,7 +49,7 @@ $(OPENGL_NAME):		$(OPENGL_OBJ)
 
 $(NCURSES_NAME):	$(NCURSES_OBJ)
 			$(CC) $(NCURSES_OBJ) -o $(NCURSES_NAME) $(NCURSES_LDFLAGS)
-			g++ $(SRC) -ldl -I ./ -o $(BIN)
+			clang++ $(SRC) -ldl -I ./ -o $(BIN)
 
 clean:
 			rm -f $(SDL_OBJ) $(NCURSES_OBJ) $(OPENGL_OBJ) $(BIN)

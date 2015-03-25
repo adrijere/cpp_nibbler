@@ -5,7 +5,7 @@
 ** Login   <mathon_j@mathonj>
 ** 
 ** Started on  Wed Mar 11 10:37:36 2015 Jérémy MATHON
-// Last update Tue Mar 24 15:46:31 2015 Valentin Cardon
+// Last update Wed Mar 25 11:25:18 2015 Valentin Cardon
 */
 
 #ifndef SNAKE_HPP_
@@ -27,8 +27,8 @@ private:
 public:
   Snake(int const &, int const &);
   ~Snake() {};
-  const std::list<t_snake>	&get_snake() const;
-  const	t_food			&get_food() const;
+  const std::list<t_snake>	get_snake() const;
+  const	t_food			get_food() const;
   void				init_food(int const &, int const &);
   void				check_food(int const &, int const &);
   int				check_eat(int const &, int const &);
