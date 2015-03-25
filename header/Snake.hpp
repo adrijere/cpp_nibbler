@@ -5,7 +5,7 @@
 ** Login   <mathon_j@mathonj>
 ** 
 ** Started on  Wed Mar 11 10:37:36 2015 Jérémy MATHON
-// Last update Wed Mar 25 12:03:11 2015 simon hure
+// Last update Wed Mar 25 12:21:39 2015 Valentin Cardon
 */
 
 #ifndef SNAKE_HPP_
@@ -17,13 +17,13 @@
 # include	<time.h>
 # include	"IDisplay.hpp"
 
-class	Snake 
+class	Snake
 {
 private:
   int			width;
   int			height;
   std::list<t_snake>	snake;
-  t_food		_food;
+   t_food		_food;
 
 public:
   Snake(int const &, int const &);
