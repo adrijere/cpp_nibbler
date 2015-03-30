@@ -5,7 +5,7 @@
 // Login   <hure_s@epitech.net>
 // 
 // Started on  Tue Mar 24 12:55:23 2015 simon hure
-// Last update Wed Mar 25 11:55:04 2015 Valentin Cardon
+// Last update Mon Mar 30 17:58:16 2015 simon hure
 
 #include "../header/Init.hh"
 
@@ -19,7 +19,7 @@ int		Init::loop_game(int const &x, int const &y, IDisplay *Window)
   Snake		snake(x, y);
   t_snake	tmp;
 
-  //snake.init_apple(x, y);
+  snake.init_food(x, y);
   while (42)
     {
       tmp.move = Window->move();
@@ -32,13 +32,14 @@ int		Init::loop_game(int const &x, int const &y, IDisplay *Window)
       else if (tmp.move == UP)
         tmp.y--;
       else if (tmp.move == DOWN)
-        tmp.y++;
+        tmp.y++;	
       if (snake.check_eat(x, y) == -1)
         {
 	  std::cout << "score : " << snake.get_snake().size() - 4 << std::endl;
           return (-1);
         }
       snake.check_food(x, y);
+      Window->display(snake.get_snake(), snake.get_food());
       //Window->display_snake(snake.get_snake(), snake.get_food());
     }
 }

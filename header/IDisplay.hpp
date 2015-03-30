@@ -5,7 +5,7 @@
 ** Login   <mathon_j@mathonj>
 ** 
 ** Started on  Wed Mar 11 10:36:06 2015 Jérémy MATHON
-// Last update Wed Mar 25 11:49:48 2015 Valentin Cardon
+// Last update Mon Mar 30 16:13:25 2015 simon hure
 */
 
 #ifndef IDISPLAY_HPP_
@@ -19,7 +19,8 @@ typedef enum	e_move
     UP,
     RIGHT,
     DOWN,
-    LEFT
+    LEFT,
+    NONE
   }		t_move;
 
 typedef struct s_snake
@@ -43,6 +44,6 @@ public:
   virtual		~IDisplay() {}
 };
 
-typedef	IDisplay	*create_t(int const &, const int &);
+//typedef	IDisplay	*create_t(int const &, const int &);
 
 #endif /* !IDISPLAY_HPP_ */

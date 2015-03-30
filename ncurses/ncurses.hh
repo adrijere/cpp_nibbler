@@ -5,7 +5,7 @@
 // Login   <hure_s@epitech.net>
 // 
 // Started on  Mon Mar 30 11:33:18 2015 simon hure
-// Last update Mon Mar 30 14:55:46 2015 simon hure
+// Last update Mon Mar 30 16:07:20 2015 simon hure
 //
 
 #ifndef _NCURSES_HH_
@@ -17,7 +17,13 @@
 #include <unistd.h>
 #include "../header/IDisplay.hpp"
 
-class Ncurses
+#define up_key 38
+#define down_key 40
+#define left_key 37
+#define right_key 39
+#define esc_key 27
+
+class Ncurses : public IDisplay
 {
 protected:
   WINDOW *_game;
@@ -25,6 +31,9 @@ protected:
   int	_y;
 public:
   Ncurses(int x, int y);
+  ~Ncurses();
+  void display(std::list<t_snake> snake, const t_food food);
+  t_move move();
   void draw_border(WINDOW *screen);
   void handle_resize(WINDOW *std, WINDOW *game, int x, int y);
 };
