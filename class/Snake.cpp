@@ -5,7 +5,7 @@
 ** Login   <mathon_j@mathonj>
 ** 
 ** Started on  Wed Mar 11 10:39:29 2015 Jérémy MATHON
-// Last update Wed Mar 25 11:25:11 2015 Valentin Cardon
+// Last update Tue Mar 31 17:00:11 2015 Valentin Cardon
 */
 
 #include	"../header/Snake.hpp"
@@ -13,6 +13,7 @@
 Snake::Snake(int const &w, int const &h) : width(w), height(h)
 {
   t_snake tmp;
+
   tmp.x = (w % 2) - 2;
   tmp.y = h % 2;
   this->snake.push_front(tmp);

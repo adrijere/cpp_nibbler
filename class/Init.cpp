@@ -5,7 +5,7 @@
 // Login   <hure_s@epitech.net>
 // 
 // Started on  Tue Mar 24 12:55:23 2015 simon hure
-// Last update Mon Mar 30 17:58:16 2015 simon hure
+// Last update Wed Apr  1 11:35:16 2015 Valentin Cardon
 
 #include "../header/Init.hh"
 
@@ -46,14 +46,14 @@ int		Init::loop_game(int const &x, int const &y, IDisplay *Window)
 
 int	Init::check_arg(int const &x, int const &y, const std::string &lib)
 {
-  if (x < 10 || x > 40)
+  if (x < 10 || x > 50)
     {
-      std::cerr << "Error : width must be between 10 and 40." << std::endl;
+      std::cerr << "Error : width must be between 10 and 400." << std::endl;
       return (1);
     }
-  else if (y < 10 || y > 40)
+  else if (y < 10 || y > 50)
     {
-      std::cerr << "Error : height must be between 10 and 40." << std::endl;
+      std::cerr << "Error : height must be between 10 and 400." << std::endl;
       return (1);
     }
   else if (lib != "lib_nibbler_sdl.so" && lib != "lib_nibbler_ncurses.so" && lib != "lib_nibbler_\
