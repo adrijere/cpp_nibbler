@@ -5,7 +5,7 @@
 ** Login   <mathon_j@mathonj>
 ** 
 ** Started on  Wed Mar 11 10:39:29 2015 Jérémy MATHON
-// Last update Wed Apr  1 15:13:46 2015 Valentin Cardon
+// Last update Wed Apr  1 15:43:01 2015 Valentin Cardon
 */
 
 #include	"../header/Snake.hpp"
@@ -62,14 +62,14 @@ void				Snake::check_food(int const &x, int const &y)
   if (this->get_snake().front().x == this->get_food().x && this->get_snake().front().x == this->get_food().y)
     {
       this->init_food(x, y);
-      tmp.x = x;
-      tmp.y = y;
+      tmp.x = this->get_snake().front().x + 1;
+      tmp.y = this->get_snake().front().y;
       this->snake.push_front(tmp);
     }
   else
     {
-      tmp.x = x;
-      tmp.y = y;
+      tmp.x = this->get_snake().front().x + 1;
+      tmp.y = this->get_snake().front().y;
       this->snake.push_front(tmp);
       this->snake.pop_back();
     }

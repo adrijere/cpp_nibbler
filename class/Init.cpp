@@ -5,7 +5,7 @@
 // Login   <hure_s@epitech.net>
 // 
 // Started on  Tue Mar 24 12:55:23 2015 simon hure
-// Last update Wed Apr  1 11:35:16 2015 Valentin Cardon
+// Last update Wed Apr  1 15:40:27 2015 Valentin Cardon
 
 #include "../header/Init.hh"
 
@@ -40,7 +40,6 @@ int		Init::loop_game(int const &x, int const &y, IDisplay *Window)
         }
       snake.check_food(x, y);
       Window->display(snake.get_snake(), snake.get_food());
-      //Window->display_snake(snake.get_snake(), snake.get_food());
     }
 }
 
