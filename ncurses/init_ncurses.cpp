@@ -5,7 +5,7 @@
 // Login   <hure_s@epitech.net>
 // 
 // Started on  Mon Mar 30 11:19:11 2015 simon hure
-// Last update Wed Apr  1 17:40:31 2015 simon hure
+// Last update Wed Apr  1 17:49:28 2015 simon hure
 //
 
 #include	"ncurses.hh"
@@ -90,14 +90,7 @@ t_move	Ncurses::move()
     case KEY_RIGHT:
       return (RIGHT);
     case esc_key:
-      {
-	return (ESC);
-	// delwin(_game);
-	// endwin();
-	// std::cout << in << " EXIT" << std::endl;
-	// exit(0);
-	// break;
-      }
+      return (ESC);
     }
   return NONE;
 }
