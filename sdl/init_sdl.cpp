@@ -5,7 +5,7 @@
 // Login   <cardon_v@epitech.net>
 // 
 // Started on  Tue Mar 24 11:36:54 2015 Valentin Cardon
-// Last update Wed Apr  1 17:47:58 2015 Valentin Cardon
+// Last update Wed Apr  1 18:02:06 2015 Valentin Cardon
 //
 
 #include	"sdl.hpp"
@@ -46,10 +46,11 @@ void		Sdl::display(std::list<t_snake> snake, const t_food food)
 {
   std::list<t_snake>::iterator it;
 
-  (void)food;
+  SDL_FillRect(this->screen, NULL, 0);
   for (it = snake.begin(); it != snake.end(); ++it)
     print_snake(*it);
   print_food(food);
+  refresh();
 }
 
 void		Sdl::print_snake(t_snake elem)
@@ -86,8 +87,7 @@ e_move	Sdl::move()
   int		sleep = 0;
 
   SDL_PollEvent(&this->event);
-  while (sleep < 100000000)
-    sleep++;
+  usleep(40000);
   switch (this->event.type)
     {
     case SDL_QUIT:

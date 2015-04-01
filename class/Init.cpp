@@ -5,7 +5,7 @@
 // Login   <hure_s@epitech.net>
 // 
 // Started on  Tue Mar 24 12:55:23 2015 simon hure
-// Last update Wed Apr  1 17:48:32 2015 Valentin Cardon
+// Last update Wed Apr  1 18:13:13 2015 Valentin Cardon
 
 #include "../header/Init.hh"
 
@@ -40,6 +40,7 @@ int		Init::loop_game(int const &x, int const &y, IDisplay *Window)
 	  Window->win_quit();
 	  loop = false;
 	}
+      snake.set_snake().push_front(tmp);
       if (snake.check_eat(x, y) == -1)
         {
 	  Window->win_quit();
@@ -47,7 +48,6 @@ int		Init::loop_game(int const &x, int const &y, IDisplay *Window)
           return (-1);
         }
       snake.check_food(x, y);
-      Window->refresh();
     }
   return (0);
 }
@@ -92,6 +92,5 @@ int	Init::start(int ac, char **av)
   if (check_arg(width, height, av[3]) == 1)
     return (-1);
   load_library(width, height, av[3]);
-  //start_game loop;
   return (0);
 }
