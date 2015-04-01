@@ -5,7 +5,7 @@
 // Login   <hure_s@epitech.net>
 // 
 // Started on  Mon Mar 30 11:19:11 2015 simon hure
-// Last update Wed Apr  1 13:27:11 2015 simon hure
+// Last update Wed Apr  1 17:40:31 2015 simon hure
 //
 
 #include	"ncurses.hh"
@@ -24,24 +24,30 @@ Ncurses::~Ncurses()
 
 Ncurses::Ncurses(int x, int y)
 {
-  // initscr();
-  // curs_set(FALSE);
-  // keypad(stdscr, TRUE);
-  // noecho();
-  // nodelay(stdscr, TRUE);
-  // x += 2;
-  // y += 2;
-  // WINDOW *game = newwin(y, x, 0, 0);
-  // draw_border(game);
-  // handle_resize(stdscr, game, x, y);
-  // wrefresh(game);
-  // _game = game;
-  // _x = x;
-  // _y = y;
-  // sleep(2);
+  initscr();
+  curs_set(FALSE);
+  keypad(stdscr, TRUE);
+  noecho();
+  nodelay(stdscr, TRUE);
+  x += 2;
+  y += 2;
+  _game = newwin(y, x, 0, 0);
+  draw_border(_game);
+  handle_resize(stdscr, _game, x, y);
+  wrefresh(_game);
+  _x = x;
+  _y = y;
 
+  //sleep(1);
   // delwin(game);
   // endwin();
+}
+
+void	Ncurses::win_quit()
+{
+  wclear(_game);
+  delwin(_game);
+  endwin();
 }
 
 void	Ncurses::handle_resize(WINDOW *std, WINDOW *game ,int x, int y)
@@ -58,12 +64,21 @@ void	Ncurses::handle_resize(WINDOW *std, WINDOW *game ,int x, int y)
     }
 }
 
+void	Ncurses::refresh()
+{
+
+}
+
 t_move	Ncurses::move()
 {
   int	in;
+  int	sleep;
 
+  sleep = 0;
+  in = 0;
+  while (sleep < 100000000)
+    sleep++;
   in = getch();
-  std::cout << "input " << in << std::endl;
   switch (in)
     {
     case KEY_UP:
@@ -76,10 +91,12 @@ t_move	Ncurses::move()
       return (RIGHT);
     case esc_key:
       {
-	delwin(_game);
-	endwin();
-	std::cout << in << " EXIT" << std::endl;
-	break;
+	return (ESC);
+	// delwin(_game);
+	// endwin();
+	// std::cout << in << " EXIT" << std::endl;
+	// exit(0);
+	// break;
       }
     }
   return NONE;
@@ -87,16 +104,16 @@ t_move	Ncurses::move()
 
 void	Ncurses::snake_body(t_snake m)
 {
-  std::cout << "-*>X = " << m.x << " -*>Y = " << m.y << std::endl;
   mvwprintw(_game, m.y, m.x, "*");
+  wrefresh(_game);
 }
 
 void	Ncurses::display(std::list<t_snake> snake, const t_food food)
 {
-  for_each(snake.begin(), snake.end(), bind1st(std::mem_fun(&Ncurses::snake_body), this));
-  std::cout << "FOODX = " << food.x << " FOODY = " << food.y << std::endl;
-  mvwprintw(_game, food.y, food.x, "@");
+  wclear(_game);
   draw_border(_game);
+  for_each(snake.begin(), snake.end(), bind1st(std::mem_fun(&Ncurses::snake_body), this));
+  mvwprintw(_game, food.y, food.x, "@");
   wrefresh(_game);
 }
 

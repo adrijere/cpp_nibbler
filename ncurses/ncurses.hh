@@ -5,7 +5,7 @@
 // Login   <hure_s@epitech.net>
 // 
 // Started on  Mon Mar 30 11:33:18 2015 simon hure
-// Last update Wed Apr  1 12:42:04 2015 simon hure
+// Last update Wed Apr  1 17:39:23 2015 simon hure
 //
 
 #ifndef _NCURSES_HH_
@@ -37,6 +37,8 @@ public:
   ~Ncurses();
   void display(std::list<t_snake> snake, const t_food food);
   t_move move();
+  void win_quit();
+  void refresh();
   void draw_border(WINDOW *screen);
   void handle_resize(WINDOW *std, WINDOW *game, int x, int y);
   void snake_body(t_snake m);  
