@@ -5,7 +5,7 @@
 // Login   <hure_s@epitech.net>
 // 
 // Started on  Mon Mar 30 11:19:11 2015 simon hure
-// Last update Wed Apr  1 12:58:15 2015 simon hure
+// Last update Wed Apr  1 13:27:11 2015 simon hure
 //
 
 #include	"ncurses.hh"
@@ -24,21 +24,22 @@ Ncurses::~Ncurses()
 
 Ncurses::Ncurses(int x, int y)
 {
-  initscr();
-  curs_set(FALSE);
-  keypad(stdscr, TRUE);
-  noecho();
-  nodelay(stdscr, TRUE);
-  x += 2;
-  y += 2;
-  WINDOW *game = newwin(y, x, 0, 0);
-  draw_border(game);
-  handle_resize(stdscr, game, x, y);
-  wrefresh(game);
-  _game = game;
-  _x = x;
-  _y = y;
-  sleep(2);
+  // initscr();
+  // curs_set(FALSE);
+  // keypad(stdscr, TRUE);
+  // noecho();
+  // nodelay(stdscr, TRUE);
+  // x += 2;
+  // y += 2;
+  // WINDOW *game = newwin(y, x, 0, 0);
+  // draw_border(game);
+  // handle_resize(stdscr, game, x, y);
+  // wrefresh(game);
+  // _game = game;
+  // _x = x;
+  // _y = y;
+  // sleep(2);
+
   // delwin(game);
   // endwin();
 }
