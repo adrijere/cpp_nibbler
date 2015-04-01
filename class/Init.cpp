@@ -5,7 +5,7 @@
 // Login   <hure_s@epitech.net>
 // 
 // Started on  Tue Mar 24 12:55:23 2015 simon hure
-// Last update Wed Apr  1 18:41:13 2015 Valentin Cardon
+// Last update Wed Apr  1 19:41:23 2015 simon hure
 
 #include "../header/Init.hh"
 
@@ -21,7 +21,7 @@ int		Init::loop_game(int const &x, int const &y, IDisplay *Window)
   bool		loop = true;
   e_move	dir;
 
-  tmp.move = RIGHT;
+  dir = RIGHT;
   snake.init_food(x, y);
   while (loop == true)
     {
@@ -31,36 +31,32 @@ int		Init::loop_game(int const &x, int const &y, IDisplay *Window)
 	dir = tmp.move;
       tmp.x = snake.get_snake().front().x;
       tmp.y = snake.get_snake().front().y;
-      /*if (tmp.move == LEFT)
-        touch = LEFT;
-      else if (tmp.move == RIGHT)
-        tmp.x++;
-      else if (tmp.move == UP)
-        tmp.y--;
-      else if (tmp.move == DOWN)
-      tmp.y++;*/
-      else if (tmp.move == ESC)
-	loop = false;
-      if (snake.check_eat(x, y, tmp, dir) == -1)
+      if (tmp.move == ESC)
+	{
+	  Window->win_quit();
+	  loop = false;
+	}
+      if (snake.check_eat(x, y, tmp) == -1)
         {
+	  Window->win_quit();
 	  std::cout << "score : " << snake.get_snake().size() - 4 << std::endl;
           return (-1);
         }
-      snake.check_food(x, y, tmp);
+      snake.check_food(x, y, tmp, dir);
     }
   return (0);
 }
 
 int	Init::check_arg(int const &x, int const &y, const std::string &lib)
 {
-  if (x < 10 || x > 50)
+  if (x < 10 || x > 80)
     {
-      std::cerr << "Error : width must be between 10 and 400." << std::endl;
+      std::cerr << "Error : width must be between 10 and 80." << std::endl;
       return (1);
     }
-  else if (y < 10 || y > 50)
+  else if (y < 10 || y > 80)
     {
-      std::cerr << "Error : height must be between 10 and 400." << std::endl;
+      std::cerr << "Error : height must be between 10 and 80." << std::endl;
       return (1);
     }
   else if (lib != "lib_nibbler_sdl.so" && lib != "lib_nibbler_ncurses.so" && lib != "lib_nibbler_\

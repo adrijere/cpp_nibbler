@@ -5,7 +5,7 @@
 ** Login   <mathon_j@mathonj>
 ** 
 ** Started on  Wed Mar 11 10:39:29 2015 Jérémy MATHON
-// Last update Wed Apr  1 18:42:07 2015 Valentin Cardon
+// Last update Wed Apr  1 19:29:53 2015 simon hure
 */
 
 #include	"../header/Snake.hpp"
@@ -56,24 +56,47 @@ void				Snake::init_food(int const &x, int const &y)
     }
 }
 
-void				Snake::check_food(int const &x, int const &y, t_snake const &snake, e_move const touch)
+t_snake				Snake::move_dir(t_snake const &snake, e_move const &touch)
+{
+  t_snake			mov;
+
+  mov = snake;
+  switch (touch)
+    {
+    case LEFT:
+      mov.x = mov.x - 1;
+      break;
+    case RIGHT:
+      mov.x++;
+      break;
+    case UP:
+      mov.y = mov.y - 1;
+      break;
+    case DOWN:
+      mov.y++;
+      break;
+    case NONE:
+      break;
+    }
+  return (mov);
+}
+
+void				Snake::check_food(int const &x, int const &y, t_snake const &snake, e_move const &touch)
 {
   t_snake	tmp;
   int		new_x;
   int		new_y;
 
-  if (this->get_snake().front().x == this->get_food().x && this->get_snake().front().x == this->get_food().y)
+    if (snake.x == this->get_food().x && snake.y == this->get_food().y)
     {
       this->init_food(x, y);
-      tmp.x = snake.x;
-      tmp.y = snake.y;
+      tmp = move_dir(snake, touch);
       this->snake.push_front(tmp);
     }
   else
     {
-      tmp.x = snake.x;
-      tmp.y = snake.y;
-      std::cout << " tmp x : " << tmp.x << " & tmp y : " << tmp.y << std::endl;
+      tmp = move_dir(snake, touch);
+      std::cout << "tmp x = " << tmp.x << " tmp y = " << tmp.y << std::endl;
       this->snake.push_front(tmp);
       this->snake.pop_back();
     }

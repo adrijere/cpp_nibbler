@@ -5,7 +5,7 @@
 // Login   <hure_s@epitech.net>
 // 
 // Started on  Mon Mar 30 11:19:11 2015 simon hure
-// Last update Wed Apr  1 17:49:28 2015 simon hure
+// Last update Wed Apr  1 19:40:45 2015 simon hure
 //
 
 #include	"ncurses.hh"
@@ -29,15 +29,14 @@ Ncurses::Ncurses(int x, int y)
   keypad(stdscr, TRUE);
   noecho();
   nodelay(stdscr, TRUE);
-  x += 2;
-  y += 2;
+  x += 1;
+  y += 1;
   _game = newwin(y, x, 0, 0);
   draw_border(_game);
   handle_resize(stdscr, _game, x, y);
   wrefresh(_game);
   _x = x;
   _y = y;
-
   //sleep(1);
   // delwin(game);
   // endwin();
@@ -64,20 +63,12 @@ void	Ncurses::handle_resize(WINDOW *std, WINDOW *game ,int x, int y)
     }
 }
 
-void	Ncurses::refresh()
-{
-
-}
-
 t_move	Ncurses::move()
 {
   int	in;
-  int	sleep;
 
-  sleep = 0;
   in = 0;
-  while (sleep < 100000000)
-    sleep++;
+  usleep(300000);
   in = getch();
   switch (in)
     {

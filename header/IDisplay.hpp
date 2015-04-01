@@ -5,7 +5,7 @@
 ** Login   <mathon_j@mathonj>
 ** 
 ** Started on  Wed Mar 11 10:36:06 2015 Jérémy MATHON
-// Last update Wed Apr  1 18:19:43 2015 Valentin Cardon
+// Last update Wed Apr  1 19:39:38 2015 simon hure
 */
 
 #ifndef IDISPLAY_HPP_
@@ -42,6 +42,7 @@ class	IDisplay
 public:
   virtual	void	display(std::list<t_snake> snake, const t_food food) = 0;
   virtual	e_move	move() = 0;
+  virtual	void	win_quit() = 0;
   virtual		~IDisplay() {}
 };
 

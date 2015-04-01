@@ -5,7 +5,7 @@
 // Login   <cardon_v@epitech.net>
 // 
 // Started on  Tue Mar 24 11:36:54 2015 Valentin Cardon
-// Last update Wed Apr  1 18:20:33 2015 Valentin Cardon
+// Last update Wed Apr  1 19:40:06 2015 simon hure
 //
 
 #include	"sdl.hpp"
@@ -22,6 +22,11 @@ Sdl::Sdl(int x, int y)
   this->x = x * 10;
   this->y = y * 10;
   this->screen = init();
+}
+
+void	Sdl::win_quit()
+{
+
 }
 
 SDL_Surface	*Sdl::init()

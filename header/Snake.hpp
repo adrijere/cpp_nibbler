@@ -5,7 +5,7 @@
 ** Login   <mathon_j@mathonj>
 ** 
 ** Started on  Wed Mar 11 10:37:36 2015 Jérémy MATHON
-// Last update Wed Apr  1 18:28:01 2015 Valentin Cardon
+// Last update Wed Apr  1 18:51:27 2015 simon hure
 */
 
 #ifndef SNAKE_HPP_
@@ -32,7 +32,8 @@ public:
   std::list<t_snake>		set_snake();
   const	t_food			get_food() const;
   void				init_food(int const &, int const &);
-  void				check_food(int const &, int const &, t_snake const &);
+  t_snake			move_dir(t_snake const &, e_move const &);
+  void				check_food(int const &, int const &, t_snake const &, e_move const &);
   int				check_eat(int const &, int const &, t_snake const &);
 };
 
