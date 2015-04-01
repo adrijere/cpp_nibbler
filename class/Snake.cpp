@@ -5,7 +5,7 @@
 ** Login   <mathon_j@mathonj>
 ** 
 ** Started on  Wed Mar 11 10:39:29 2015 Jérémy MATHON
-// Last update Tue Mar 31 17:00:11 2015 Valentin Cardon
+// Last update Wed Apr  1 15:13:46 2015 Valentin Cardon
 */
 
 #include	"../header/Snake.hpp"
@@ -14,17 +14,21 @@ Snake::Snake(int const &w, int const &h) : width(w), height(h)
 {
   t_snake tmp;
 
-  tmp.x = (w % 2) - 2;
-  tmp.y = h % 2;
+  tmp.x = (w / 2) - 2;
+  tmp.y = h / 2;
+  //std::cout << "tmp x : " << tmp.x << " tmp y : " << tmp.y << std::endl;
   this->snake.push_front(tmp);
-  tmp.x = (w % 2) - 1;
-  tmp.y = h % 2;
+  tmp.x = (w / 2) - 1;
+  tmp.y = h / 2;
+  //std::cout << "tmp x : " << tmp.x << " tmp y : " << tmp.y << std::endl;
   this->snake.push_front(tmp);
-  tmp.x = (w % 2);
-  tmp.y = h % 2;
+  tmp.x = (w / 2);
+  tmp.y = h / 2;
+  //std::cout << "tmp x : " << tmp.x << " tmp y : " << tmp.y << std::endl;
   this->snake.push_front(tmp);
-  tmp.x = (w % 2) + 1;
-  tmp.y = h % 2;
+  tmp.x = (w / 2) + 1;
+  tmp.y = h / 2;
+  //std::cout << "tmp x : " << tmp.x << " tmp y : " << tmp.y << std::endl;
   this->snake.push_front(tmp);
 }
 

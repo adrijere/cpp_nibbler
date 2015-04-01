@@ -5,7 +5,7 @@
 // Login   <cardon_v@epitech.net>
 // 
 // Started on  Tue Mar 24 11:36:54 2015 Valentin Cardon
-// Last update Wed Apr  1 13:00:05 2015 Valentin Cardon
+// Last update Wed Apr  1 15:17:20 2015 Valentin Cardon
 //
 
 #include	"sdl.hpp"
@@ -43,35 +43,34 @@ int	Sdl::init()
 void		Sdl::display(std::list<t_snake> snake, const t_food food)
 {
   init();
-  (void)snake;
-  (void)food;
-  while(SDL_WaitEvent(&this->event))
-    {
-      this->touch = move();
-      for_each(snake.begin(), snake.end(), print_snake);      
-      std::cout << "move = " << this->touch << std::endl;
-    }
+  for_each(snake.begin(), snake.end(), bind1st(std::mem_fun(&Sdl::print_snake), this));
+  print_food(food);
 }
 
 void		Sdl::print_snake(t_snake elem)
 {
-  int		i;
-  int		j;
-
-  i = elem.x + 5;
-  j = elem.y + 5;
-  while (elem.x < i)
-    {
-      while (elem.y < j)
-	{
-	  
-	  elem.y++;
-	}
-      elem.x++;
-    }
+  SDL_Rect	rect;
+ 
+  std::cout << "elem.x = " << elem.x << " " << "elem.y = " << elem.y << std::endl;
+  rect.x = elem.x;
+  rect.y = elem.y;
+  rect.w = 15;
+  rect.h = 15;
+  SDL_FillRect(this->screen, &rect, SDL_MapRGB(this->screen->format, 0, 255, 0));
 }
 
-t_move	Sdl::move()
+void		Sdl::print_food(t_food food)
+{
+  SDL_Rect	rect;
+  
+  rect.x = food.x;
+  rect.y = food.y;
+  rect.w = 15;
+  rect.h = 15;
+  SDL_FillRect(this->screen, &rect, SDL_MapRGB(this->screen->format, 236, 34, 34));
+}
+
+e_move	Sdl::move()
 {
   while (SDL_WaitEvent(&this->event))
     {
@@ -84,10 +83,10 @@ t_move	Sdl::move()
       if (event.key.keysym.sym == SDLK_RIGHT)
 	return (RIGHT);
       if (event.key.keysym.sym == SDLK_ESCAPE)
-	SDL_Quit();
+	  SDL_Quit();
     }
   return (NONE);
 }
 
-  Sdl::~Sdl()
-  {}
+Sdl::~Sdl()
+{}

@@ -5,7 +5,7 @@
 // Login   <cardon_v@epitech.net>
 // 
 // Started on  Tue Mar 24 11:37:46 2015 Valentin Cardon
-// Last update Wed Apr  1 12:00:26 2015 Valentin Cardon
+// Last update Wed Apr  1 14:15:15 2015 Valentin Cardon
 //
 
 #ifndef		_SDL_HPP_
@@ -14,6 +14,8 @@
 #define		BPP	32
 
 # include	<SDL/SDL.h>
+# include	<iostream>
+#include	<algorithm>
 # include	"../header/IDisplay.hpp"
 
 class		Sdl : public IDisplay
@@ -29,9 +31,10 @@ private:
 public:
   Sdl(int x, int y);
   void		display(std::list<t_snake>, const t_food);
-  t_move	move();
+  e_move	move();
   int		init();
-  void		print_snake(std::list<t_snake>, SDL_Surface*);
+  void		print_snake(t_snake);
+  void		print_food(t_food);  
   ~Sdl();
 };
 
