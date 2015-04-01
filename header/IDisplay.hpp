@@ -5,7 +5,7 @@
 ** Login   <mathon_j@mathonj>
 ** 
 ** Started on  Wed Mar 11 10:36:06 2015 Jérémy MATHON
-// Last update Mon Mar 30 16:13:25 2015 simon hure
+// Last update Wed Apr  1 17:37:54 2015 Valentin Cardon
 */
 
 #ifndef IDISPLAY_HPP_
@@ -20,6 +20,7 @@ typedef enum	e_move
     RIGHT,
     DOWN,
     LEFT,
+    ESC,
     NONE
   }		t_move;
 
@@ -41,6 +42,8 @@ class	IDisplay
 public:
   virtual	void	display(std::list<t_snake> snake, const t_food food) = 0;
   virtual	e_move	move() = 0;
+  virtual	void	refresh() = 0;
+  virtual	void	win_quit() = 0;
   virtual		~IDisplay() {}
 };
 

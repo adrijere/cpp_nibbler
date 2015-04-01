@@ -5,7 +5,7 @@
 ## Login   <mathon_j@epitech.net>
 ## 
 ## Started on  Tue Mar 24 09:51:26 2015 Jérémy MATHON
-## Last update Tue Mar 31 15:05:55 2015 Valentin Cardon
+## Last update Wed Apr  1 17:32:02 2015 Valentin Cardon
 ##
 
 BIN		=	nibbler
@@ -33,7 +33,7 @@ NCURSES_OBJ	=	$(NCURSES_SRC:.cpp=.o)
 
 CC		=	clang++
 
-CXXFLAGS	+=	-Wall -Wextra -fpic -I ./
+CXXFLAGS	+=	-fpic -I ./
 
 SDL_LDFLAGS	+=	-shared -lSDL
 #OPENGL_LDFLAGS	+=	-shared -lSDl -lGL -lGLU
