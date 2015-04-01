@@ -5,7 +5,7 @@
 // Login   <hure_s@epitech.net>
 // 
 // Started on  Mon Mar 30 11:19:11 2015 simon hure
-// Last update Mon Mar 30 17:59:34 2015 simon hure
+// Last update Wed Apr  1 12:58:15 2015 simon hure
 //
 
 #include	"ncurses.hh"
@@ -24,20 +24,21 @@ Ncurses::~Ncurses()
 
 Ncurses::Ncurses(int x, int y)
 {
-  // initscr();
-  // noecho();
-  // curs_set(FALSE);
-  // x += 2;
-  // y += 2;
-  // WINDOW *game = newwin(y, x, 0, 0);
-  // draw_border(game);
-  // handle_resize(stdscr, game, x, y);
-  // wrefresh(game);
-  // _game = game;
-  // _x = x;
-  // _y = y;
-  // sleep(2);
-
+  initscr();
+  curs_set(FALSE);
+  keypad(stdscr, TRUE);
+  noecho();
+  nodelay(stdscr, TRUE);
+  x += 2;
+  y += 2;
+  WINDOW *game = newwin(y, x, 0, 0);
+  draw_border(game);
+  handle_resize(stdscr, game, x, y);
+  wrefresh(game);
+  _game = game;
+  _x = x;
+  _y = y;
+  sleep(2);
   // delwin(game);
   // endwin();
 }
@@ -64,13 +65,13 @@ t_move	Ncurses::move()
   std::cout << "input " << in << std::endl;
   switch (in)
     {
-    case up_key:
+    case KEY_UP:
       return (UP);
-    case down_key:
+    case KEY_DOWN:
       return (DOWN);
-    case left_key:
+    case KEY_LEFT:
       return (LEFT);
-    case right_key:
+    case KEY_RIGHT:
       return (RIGHT);
     case esc_key:
       {
@@ -83,23 +84,18 @@ t_move	Ncurses::move()
   return NONE;
 }
 
+void	Ncurses::snake_body(t_snake m)
+{
+  std::cout << "-*>X = " << m.x << " -*>Y = " << m.y << std::endl;
+  mvwprintw(_game, m.y, m.x, "*");
+}
+
 void	Ncurses::display(std::list<t_snake> snake, const t_food food)
 {
-  std::list<t_snake>::iterator it;
-
-  it = snake.begin();
-  //wclear(_game);
-  draw_border(_game);
-  while (it != snake.end())
-    {
-      std::cout << "->X = " << it->x << " Y = " << it->y << std::endl;
-      if (it->x == snake.front().x && it->y == snake.front().y)
-	mvwprintw(_game, it->y, it->x, "*");
-      mvwprintw(_game, it->y, it->x, "$");
-      ++it;
-    }
+  for_each(snake.begin(), snake.end(), bind1st(std::mem_fun(&Ncurses::snake_body), this));
   std::cout << "FOODX = " << food.x << " FOODY = " << food.y << std::endl;
   mvwprintw(_game, food.y, food.x, "@");
+  draw_border(_game);
   wrefresh(_game);
 }
 
