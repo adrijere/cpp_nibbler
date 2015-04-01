@@ -5,7 +5,7 @@
 // Login   <cardon_v@epitech.net>
 // 
 // Started on  Tue Mar 24 11:36:54 2015 Valentin Cardon
-// Last update Wed Apr  1 17:38:34 2015 Valentin Cardon
+// Last update Wed Apr  1 17:47:58 2015 Valentin Cardon
 //
 
 #include	"sdl.hpp"
@@ -83,8 +83,11 @@ void		Sdl::refresh()
 
 e_move	Sdl::move()
 {
+  int		sleep = 0;
+
   SDL_PollEvent(&this->event);
-  usleep(300000);
+  while (sleep < 100000000)
+    sleep++;
   switch (this->event.type)
     {
     case SDL_QUIT:

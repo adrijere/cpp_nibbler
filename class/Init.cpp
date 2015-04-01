@@ -5,7 +5,7 @@
 // Login   <hure_s@epitech.net>
 // 
 // Started on  Tue Mar 24 12:55:23 2015 simon hure
-// Last update Wed Apr  1 17:43:15 2015 Valentin Cardon
+// Last update Wed Apr  1 17:48:32 2015 Valentin Cardon
 
 #include "../header/Init.hh"
 
@@ -36,7 +36,10 @@ int		Init::loop_game(int const &x, int const &y, IDisplay *Window)
       else if (tmp.move == DOWN)
         tmp.y++;
       else if (tmp.move == ESC)
-	loop = false;
+	{
+	  Window->win_quit();
+	  loop = false;
+	}
       if (snake.check_eat(x, y) == -1)
         {
 	  Window->win_quit();
