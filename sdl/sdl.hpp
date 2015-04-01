@@ -5,7 +5,7 @@
 // Login   <cardon_v@epitech.net>
 // 
 // Started on  Tue Mar 24 11:37:46 2015 Valentin Cardon
-// Last update Wed Apr  1 17:37:26 2015 Valentin Cardon
+// Last update Wed Apr  1 18:20:43 2015 Valentin Cardon
 //
 
 #ifndef		_SDL_HPP_
@@ -36,7 +36,6 @@ public:
   void		print_snake(t_snake);
   void		print_food(t_food);
   void		refresh();
-  void		win_quit();
   ~Sdl();
 };
 

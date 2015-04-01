@@ -5,7 +5,7 @@
 // Login   <cardon_v@epitech.net>
 // 
 // Started on  Tue Mar 24 11:36:54 2015 Valentin Cardon
-// Last update Wed Apr  1 18:02:06 2015 Valentin Cardon
+// Last update Wed Apr  1 18:20:33 2015 Valentin Cardon
 //
 
 #include	"sdl.hpp"
@@ -107,8 +107,6 @@ e_move	Sdl::move()
     }
   return (NONE);
 }
-void	Sdl::win_quit()
-{}
 
 Sdl::~Sdl()
 {}

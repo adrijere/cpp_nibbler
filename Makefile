@@ -5,7 +5,7 @@
 ## Login   <mathon_j@epitech.net>
 ## 
 ## Started on  Tue Mar 24 09:51:26 2015 Jérémy MATHON
-## Last update Wed Apr  1 17:32:02 2015 Valentin Cardon
+## Last update Wed Apr  1 18:16:59 2015 Valentin Cardon
 ##
 
 BIN		=	nibbler
@@ -31,7 +31,7 @@ SDL_OBJ		=	$(SDL_SRC:.cpp=.o)
 #OPENGL_OBJ	=	$(OPENGL_SRC:.cpp=.o)
 NCURSES_OBJ	=	$(NCURSES_SRC:.cpp=.o)
 
-CC		=	clang++
+CC		=	g++
 
 CXXFLAGS	+=	-fpic -I ./
 
@@ -43,14 +43,14 @@ all:			$(NCURSES_NAME) $(SDL_NAME)
 
 $(SDL_NAME):		$(SDL_OBJ)
 			$(CC) $(SDL_OBJ) -o $(SDL_NAME) $(SDL_LDFLAGS)
-			clang++ $(SRC) -ldl -I ./ -o $(BIN)
+			g++ $(SRC) -ldl -I ./ -o $(BIN)
 
 #$(OPENGL_NAME):		$(OPENGL_OBJ)
 #			$(CC) $(OPENGL_OBJ) -o $(OPENGL_NAME) $(OPENGL_LDFLAGS)
 
 $(NCURSES_NAME):	$(NCURSES_OBJ)
 			$(CC) $(NCURSES_OBJ) -o $(NCURSES_NAME) $(NCURSES_LDFLAGS)
-			clang++ $(SRC) -ldl -I ./ -o $(BIN)
+			g++ $(SRC) -ldl -I ./ -o $(BIN)
 
 
 clean:

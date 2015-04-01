@@ -5,7 +5,7 @@
 // Login   <hure_s@epitech.net>
 // 
 // Started on  Tue Mar 24 12:55:23 2015 simon hure
-// Last update Wed Apr  1 18:13:13 2015 Valentin Cardon
+// Last update Wed Apr  1 18:41:13 2015 Valentin Cardon
 
 #include "../header/Init.hh"
 
@@ -19,35 +19,34 @@ int		Init::loop_game(int const &x, int const &y, IDisplay *Window)
   Snake		snake(x, y);
   t_snake	tmp;
   bool		loop = true;
+  e_move	dir;
 
+  tmp.move = RIGHT;
   snake.init_food(x, y);
   while (loop == true)
     {
       Window->display(snake.get_snake(), snake.get_food());
       tmp.move = Window->move();
+      if (tmp.move != NONE)
+	dir = tmp.move;
       tmp.x = snake.get_snake().front().x;
       tmp.y = snake.get_snake().front().y;
-      if (tmp.move == LEFT)
-        tmp.x--;
+      /*if (tmp.move == LEFT)
+        touch = LEFT;
       else if (tmp.move == RIGHT)
         tmp.x++;
       else if (tmp.move == UP)
         tmp.y--;
       else if (tmp.move == DOWN)
-        tmp.y++;
+      tmp.y++;*/
       else if (tmp.move == ESC)
-	{
-	  Window->win_quit();
-	  loop = false;
-	}
-      snake.set_snake().push_front(tmp);
-      if (snake.check_eat(x, y) == -1)
+	loop = false;
+      if (snake.check_eat(x, y, tmp, dir) == -1)
         {
-	  Window->win_quit();
 	  std::cout << "score : " << snake.get_snake().size() - 4 << std::endl;
           return (-1);
         }
-      snake.check_food(x, y);
+      snake.check_food(x, y, tmp);
     }
   return (0);
 }
