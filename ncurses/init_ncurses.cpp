@@ -5,7 +5,7 @@
 // Login   <hure_s@epitech.net>
 // 
 // Started on  Mon Mar 30 11:19:11 2015 simon hure
-// Last update Wed Apr  1 19:40:45 2015 simon hure
+// Last update Thu Apr  2 15:40:53 2015 simon hure
 //
 
 #include	"ncurses.hh"
@@ -25,21 +25,26 @@ Ncurses::~Ncurses()
 Ncurses::Ncurses(int x, int y)
 {
   initscr();
+  start_color();
   curs_set(FALSE);
   keypad(stdscr, TRUE);
   noecho();
   nodelay(stdscr, TRUE);
-  x += 1;
-  y += 1;
+  x += 2;
+  y += 2;
+  init_pair(1, COLOR_RED, COLOR_BLACK);
+  init_pair(2, COLOR_GREEN, COLOR_BLACK);
+  init_pair(3, COLOR_YELLOW, COLOR_BLACK);
+  init_pair(4, COLOR_CYAN, COLOR_BLACK);
+  init_pair(5, COLOR_MAGENTA, COLOR_BLACK);
+  init_pair(6, COLOR_BLUE, COLOR_BLACK);
+  init_pair(7, COLOR_BLACK, COLOR_GREEN);
   _game = newwin(y, x, 0, 0);
-  draw_border(_game);
-  handle_resize(stdscr, _game, x, y);
+  draw_border();
+  handle_resize();
   wrefresh(_game);
   _x = x;
   _y = y;
-  //sleep(1);
-  // delwin(game);
-  // endwin();
 }
 
 void	Ncurses::win_quit()
@@ -49,18 +54,10 @@ void	Ncurses::win_quit()
   endwin();
 }
 
-void	Ncurses::handle_resize(WINDOW *std, WINDOW *game ,int x, int y)
+void	Ncurses::handle_resize()
 {
-  int	new_x;
-  int	new_y;
-
-  getmaxyx(std, new_y, new_x);
-  if (new_y < y || new_x < x)
-    {
-      wclear(std);
-      wclear(game);
-      mvwprintw(game, 0, 0,"Error Windows Too Small");
-    }
+  wclear(_game);
+  mvwprintw(_game, 0, 0,"Error Windows Too Small");
 }
 
 t_move	Ncurses::move()
@@ -68,7 +65,7 @@ t_move	Ncurses::move()
   int	in;
 
   in = 0;
-  usleep(300000);
+  usleep(150000);
   in = getch();
   switch (in)
     {
@@ -86,51 +83,78 @@ t_move	Ncurses::move()
   return NONE;
 }
 
-void	Ncurses::snake_body(t_snake m)
+void	Ncurses::snake_body(t_snake const m)
 {
-  mvwprintw(_game, m.y, m.x, "*");
-  wrefresh(_game);
+  wattron(_game, COLOR_PAIR(2));
+  mvwprintw(_game, m.y + 1, m.x + 1, "*");
+  wattroff(_game, COLOR_PAIR(2));
+}
+
+void	Ncurses::snake_head(int const &x, int const &y)
+{
+  wattron(_game, COLOR_PAIR(3));
+  mvwprintw(_game, y + 1, x + 1, "0");
+  wattroff(_game, COLOR_PAIR(3));
 }
 
 void	Ncurses::display(std::list<t_snake> snake, const t_food food)
 {
   wclear(_game);
-  draw_border(_game);
+  draw_border();
   for_each(snake.begin(), snake.end(), bind1st(std::mem_fun(&Ncurses::snake_body), this));
-  mvwprintw(_game, food.y, food.x, "@");
+  snake_head(snake.begin()->x, snake.begin()->y);
+  wattron(_game, COLOR_PAIR(1));
+  mvwprintw(_game, food.y + 1, food.x + 1, "@");
+  wattroff(_game, COLOR_PAIR(1));
   wrefresh(_game);
 }
 
-void	Ncurses::draw_border(WINDOW *screen)
+void	Ncurses::draw_border()
 {
   int	x, y, i;
 
   i = 0;
-  getmaxyx(screen, y, x);
+  getmaxyx(_game, y, x);
+  wattron(_game, COLOR_PAIR(7));
   while (i < x)
     {
       if (i >= x/2 - 4 && i <= x/2)
 	i++;
-      mvwprintw(screen, 0, i, "-");
+      mvwprintw(_game, 0, i, "-");
       i++;
     }
   i = 0;
   while (i < x)
     {
-      mvwprintw(screen, y - 1, i, "-");
+      mvwprintw(_game, y - 1, i, "-");
       i++;
     }
   i = 0;
   while (i < y)
     {
-      mvwprintw(screen, i, 0, "|");
+      mvwprintw(_game, i, 0, "|");
       i++;
     }
   i = 0;
   while (i < y)
     {
-      mvwprintw(screen, i, x - 1, "|");
+      mvwprintw(_game, i, x - 1, "|");
       i++;
     }
-  mvwprintw(screen, 0, x/2 - 4,"Nibbler");
+  wattroff(_game, COLOR_PAIR(7));
+  wattron(_game, COLOR_PAIR(6));
+  mvwprintw(_game, 0, x/2 - 4, "N");
+  wattroff(_game, COLOR_PAIR(6));
+  wattron(_game, COLOR_PAIR(6));
+  mvwprintw(_game, 0, x/2 - 3, "i");
+  wattroff(_game, COLOR_PAIR(6));
+  mvwprintw(_game, 0, x/2 - 2, "b");
+  mvwprintw(_game, 0, x/2 - 1, "b");
+  mvwprintw(_game, 0, x/2 - 0, "l");
+  wattron(_game, COLOR_PAIR(1));
+  mvwprintw(_game, 0, x/2 + 1, "e");
+  wattroff(_game, COLOR_PAIR(1));
+  wattron(_game, COLOR_PAIR(1));
+  mvwprintw(_game, 0, x/2 + 2, "r");
+  wattroff(_game, COLOR_PAIR(1));
 }
