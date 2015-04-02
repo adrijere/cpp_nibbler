@@ -5,7 +5,7 @@
 // Login   <cardon_v@epitech.net>
 // 
 // Started on  Tue Mar 24 11:36:54 2015 Valentin Cardon
-// Last update Wed Apr  1 19:40:06 2015 simon hure
+// Last update Thu Apr  2 14:12:10 2015 Valentin Cardon
 //
 
 #include	"sdl.hpp"
@@ -65,7 +65,7 @@ void		Sdl::print_snake(t_snake elem)
 
   rect.x = elem.x * 10;
   rect.y = elem.y * 10;
-  square = SDL_CreateRGBSurface(SDL_HWSURFACE, 15, 15, 32, 0, 0, 0, 0); 
+  square = SDL_CreateRGBSurface(SDL_HWSURFACE, 10, 10, 32, 0, 0, 0, 0); 
   SDL_FillRect(square, NULL, SDL_MapRGB(this->screen->format, 0, 255, 0));
   SDL_BlitSurface(square, NULL, this->screen, &rect);
 }
@@ -77,7 +77,7 @@ void		Sdl::print_food(t_food food)
 
   rect.x = food.x * 10;
   rect.y = food.y * 10;
-  square = SDL_CreateRGBSurface(SDL_HWSURFACE, 15, 15, 32, 0, 0, 0, 0); 
+  square = SDL_CreateRGBSurface(SDL_HWSURFACE, 10, 10, 32, 0, 0, 0, 0); 
   SDL_FillRect(square, NULL, SDL_MapRGB(this->screen->format, 255, 0, 0));
   SDL_BlitSurface(square, NULL, this->screen, &rect);
 }
@@ -92,7 +92,7 @@ e_move	Sdl::move()
   int		sleep = 0;
 
   SDL_PollEvent(&this->event);
-  usleep(40000);
+  usleep(200000);
   switch (this->event.type)
     {
     case SDL_QUIT:
