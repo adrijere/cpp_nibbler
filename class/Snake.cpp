@@ -5,7 +5,7 @@
 ** Login   <mathon_j@mathonj>
 ** 
 ** Started on  Wed Mar 11 10:39:29 2015 Jérémy MATHON
-// Last update Wed Apr  1 19:29:53 2015 simon hure
+// Last update Thu Apr  2 14:19:14 2015 Valentin Cardon
 */
 
 #include	"../header/Snake.hpp"
@@ -96,7 +96,6 @@ void				Snake::check_food(int const &x, int const &y, t_snake const &snake, e_mo
   else
     {
       tmp = move_dir(snake, touch);
-      std::cout << "tmp x = " << tmp.x << " tmp y = " << tmp.y << std::endl;
       this->snake.push_front(tmp);
       this->snake.pop_back();
     }
@@ -106,7 +105,6 @@ int				Snake::check_eat(int const &x, int const &y, t_snake const &snake)
 {
   std::list<t_snake>::iterator	it;
 
-  std::cout << "snake x : " << snake.x << " & y : " << snake.y << std::endl;
   if (snake.x < 0 || snake.y < 0 || snake.x >= x || snake.y >=y)
     return (-1);
   for (it = this->snake.begin(); it != this->snake.end(); ++it)

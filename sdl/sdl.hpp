@@ -5,7 +5,7 @@
 // Login   <cardon_v@epitech.net>
 // 
 // Started on  Tue Mar 24 11:37:46 2015 Valentin Cardon
-// Last update Wed Apr  1 19:40:22 2015 simon hure
+// Last update Thu Apr  2 14:26:49 2015 Valentin Cardon
 //
 
 #ifndef		_SDL_HPP_
@@ -34,6 +34,7 @@ public:
   e_move	move();
   SDL_Surface	*init();
   void		print_snake(t_snake);
+  void		print_head(t_snake);
   void		print_food(t_food);
   void		refresh();
   void		win_quit();
