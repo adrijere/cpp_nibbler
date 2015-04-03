@@ -5,7 +5,7 @@
 ## Login   <mathon_j@epitech.net>
 ## 
 ## Started on  Tue Mar 24 09:51:26 2015 Jérémy MATHON
-## Last update Fri Apr  3 11:54:32 2015 simon hure
+## Last update Fri Apr  3 13:35:13 2015 Jérémy MATHON
 ##
 
 BIN		=	nibbler
@@ -56,7 +56,7 @@ $(BIN):			$(OBJ)
 			$(CC) $(OBJ) -ldl -I ./ -o $(BIN)
 
 clean:
-			rm -f $(NCURSES_OBJ) $(SDL_OBJ) $(XLIB_OBJ)
+			rm -f $(NCURSES_OBJ) $(SDL_OBJ) $(XLIB_OBJ) $(OBJ)
 
 fclean:			clean
 			rm -f $(NCURSES_NAME) $(SDL_NAME) $(XLIB_NAME) $(BIN)
