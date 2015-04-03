@@ -5,7 +5,7 @@
 // Login   <hure_s@epitech.net>
 // 
 // Started on  Thu Apr  2 10:16:31 2015 simon hure
-// Last update Fri Apr  3 17:29:46 2015 simon hure
+// Last update Fri Apr  3 17:39:29 2015 simon hure
 //
 
 #include	"libx.hh"
@@ -106,16 +106,19 @@ t_move	Libx::move()
   switch (rep.type)
     {
     case KeyPress:
-      if (XLookupKeysym(&rep.xkey, 0) == XK_Escape)
-	return (ESC);
-      else if (XLookupKeysym(&rep.xkey, 0) == XK_Up)
-	return (UP);
-      else if (XLookupKeysym(&rep.xkey, 0) == XK_Down)
-	return (DOWN);
-      else if (XLookupKeysym(&rep.xkey, 0) == XK_Left)
-	return (LEFT);
-      else if (XLookupKeysym(&rep.xkey, 0) == XK_Right)
-	return (RIGHT);
+      switch (XLookupKeysym(&rep.xkey, 0))
+	{
+	case XK_Escape:
+	  return (ESC);
+	case XK_Up:
+	  return (UP);
+	case XK_Down:
+	  return (DOWN);
+	case XK_Left:
+	  return (LEFT);
+	case XK_Right:
+	  return (RIGHT);
+	}
       break;
     }
   return (NONE);
