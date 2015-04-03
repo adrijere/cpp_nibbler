@@ -5,7 +5,7 @@
 // Login   <hure_s@epitech.net>
 // 
 // Started on  Thu Apr  2 10:18:27 2015 simon hure
-// Last update Fri Apr  3 14:23:16 2015 simon hure
+// Last update Fri Apr  3 14:35:29 2015 simon hure
 //
 
 #ifndef	_LIBX_
@@ -41,6 +41,7 @@ public:
   virtual ~Libx();
   void win_quit();
   int check_env();
+  void speedup(int const &sn_x, int const &sn_y, int const &fo_x, int const &fo_y);
   void print_snake(t_snake const elem);
   t_move move();
   void display(std::list<t_snake> snake, const t_food food);

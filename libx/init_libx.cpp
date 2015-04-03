@@ -5,7 +5,7 @@
 // Login   <hure_s@epitech.net>
 // 
 // Started on  Thu Apr  2 10:16:31 2015 simon hure
-// Last update Fri Apr  3 14:21:56 2015 simon hure
+// Last update Fri Apr  3 14:34:53 2015 simon hure
 //
 
 #include	"libx.hh"
@@ -105,6 +105,16 @@ void	Libx::print_snake(t_snake const elem)
   XFillRectangle(_me, _win, _gc, elem.x * 20, elem.y * 20, 10, 10);
 }
 
+void	Libx::speedup(int const &sn_x, int const &sn_y, int const &fo_x, int const &fo_y)
+{
+  if (sn_x == fo_x && sn_y == fo_y)
+    {
+      _dtime -= 10000;
+      if (_dtime <= 0)
+	_dtime = 10000;
+    }
+}
+
 void	Libx::display(std::list<t_snake> snake, const t_food food)
 {
   XClearWindow(_me, _win);
@@ -119,5 +129,6 @@ void	Libx::display(std::list<t_snake> snake, const t_food food)
   XSetFillStyle(_me, _gc, FillSolid);
   XDrawRectangle(_me, _win, _gc, food.x * 20 , food.y * 20, 10, 10);
   XFillRectangle(_me, _win, _gc, food.x * 20 , food.y * 20, 10, 10);
+  speedup(snake.begin()->x, snake.begin()->y, food.x, food.y);
   XFlush(_me);
 }
