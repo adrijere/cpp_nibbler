@@ -5,7 +5,7 @@
 // Login   <hure_s@epitech.net>
 // 
 // Started on  Mon Mar 30 11:19:11 2015 simon hure
-// Last update Fri Apr  3 16:01:43 2015 simon hure
+// Last update Fri Apr  3 16:28:12 2015 simon hure
 //
 
 #include	"ncurses.hh"
@@ -24,21 +24,58 @@ Ncurses::~Ncurses()
 
 Ncurses::Ncurses(int x, int y)
 {
+  try
+    {
+      if (check_env() == -1)
+	throw (DisplayException("Environement variable needed"));
+    }
+  catch (const Exception e)
+    {
+      std::cerr << e.what() << std::endl;
+    }
   initscr();
   start_color();
   curs_set(FALSE);
   keypad(stdscr, TRUE);
   noecho();
   nodelay(stdscr, TRUE);
-  x += 2;
-  y += 2;
-  _game = newwin(y, x, 0, 0);
+  _x = x + 2;
+  _y = y + 2;
+  _dtime = 150000;
+  _game = newwin(_y, _x, 0, 0);
   set_color_pair();
   draw_border();
   handle_resize();
   wrefresh(_game);
-  _x = x;
-  _y = y;
+  
+}
+
+void    Ncurses::speedup(int const &sn_x, int const &sn_y, int const &fo_x, int const &fo_y)
+{
+  if (sn_x == fo_x && sn_y == fo_y)
+    {
+      _dtime -= 6000;
+      if (_dtime <= 0)
+        _dtime = 10000;
+    }
+}
+
+int     Ncurses::check_env()
+{
+  int   i;
+  extern char **environ;
+  std::string tmp;
+
+  i = 0;
+  while (environ[i])
+    {
+      tmp = environ[i];
+      tmp = tmp.substr(0, tmp.find("="));
+      if (tmp == "TERM")
+        return (0);
+      i++;
+    }
+  return (-1);
 }
 
 void	Ncurses::set_color_pair()
@@ -61,8 +98,14 @@ void	Ncurses::win_quit()
 
 void	Ncurses::handle_resize()
 {
-  wclear(_game);
-  mvwprintw(_game, 0, 0,"Error Windows Too Small");
+  int	x, y;
+
+  getmaxyx(stdscr, y, x);
+  if (y < _y || x < _x)
+    {
+      wclear(_game);
+      mvwprintw(_game, 0, 0,"Error Windows Too Small");
+    }
 }
 
 t_move	Ncurses::move()
@@ -70,7 +113,7 @@ t_move	Ncurses::move()
   int	in;
 
   in = 0;
-  usleep(150000);
+  usleep(_dtime);
   in = getch();
   switch (in)
     {
@@ -111,6 +154,7 @@ void	Ncurses::display(std::list<t_snake> snake, const t_food food)
   wattron(_game, COLOR_PAIR(1));
   mvwprintw(_game, food.y + 1, food.x + 1, "@");
   wattroff(_game, COLOR_PAIR(1));
+  speedup(snake.begin()->x, snake.begin()->y, food.x, food.y);
   wrefresh(_game);
 }
 

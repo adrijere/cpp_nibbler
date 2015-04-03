@@ -5,7 +5,7 @@
 // Login   <hure_s@epitech.net>
 // 
 // Started on  Mon Mar 30 11:33:18 2015 simon hure
-// Last update Fri Apr  3 16:01:44 2015 simon hure
+// Last update Fri Apr  3 16:23:08 2015 simon hure
 //
 
 #ifndef _NCURSES_HH_
@@ -21,10 +21,6 @@
 #include "../header/Exception.hh"
 #include "../header/IDisplay.hpp"
 
-#define up_key 38
-#define down_key 40
-#define left_key 37
-#define right_key 39
 #define esc_key 27
 
 class Ncurses : public IDisplay
@@ -33,6 +29,7 @@ protected:
   WINDOW *_game;
   int	_x;
   int	_y;
+  int	_dtime;
 public:
   Ncurses(int x, int y);
   ~Ncurses();
@@ -40,12 +37,12 @@ public:
   t_move move();
   void set_color_pair();
   void win_quit();
+  int check_env();
+  void speedup(int const &, int const &, int const &, int const &);
   void draw_border();
   void handle_resize();
   void snake_body(t_snake const m);
   void snake_head(int const &x, int const &y);
 };
-
-
 
 #endif

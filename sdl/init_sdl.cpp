@@ -5,7 +5,7 @@
 // Login   <cardon_v@epitech.net>
 // 
 // Started on  Tue Mar 24 11:36:54 2015 Valentin Cardon
-// Last update Fri Apr  3 16:09:41 2015 Valentin Cardon
+// Last update Fri Apr  3 16:33:23 2015 simon hure
 //
 
 #include	"sdl.hpp"
@@ -18,7 +18,15 @@ extern	"C" IDisplay *create_t(int const &x, int const &y)
 
 Sdl::Sdl(int x, int y)
 {
-
+  try
+    {
+      if (check_env() == -1)
+	throw (DisplayException("Environement variable needed"));
+    }
+  catch (const Exception e)
+    {
+      std::cerr << e.what() << std::endl;
+    }
   this->x = (x * 20);
   this->y = (y * 20);
   this->screen = init();
@@ -45,6 +53,24 @@ SDL_Surface	*Sdl::init()
       == NULL)
     return (NULL);
   return (tmp);
+}
+
+int     Sdl::check_env()
+{
+  int   i;
+  extern char **environ;
+  std::string tmp;
+
+  i = 0;
+  while (environ[i])
+    {
+      tmp = environ[i];
+      tmp = tmp.substr(0, tmp.find("="));
+      if (tmp == "DISPLAY")
+        return (0);
+      i++;
+    }
+  return (-1);
 }
 
 void		Sdl::display(std::list<t_snake> snake, const t_food food)

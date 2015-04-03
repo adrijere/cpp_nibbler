@@ -5,7 +5,7 @@
 // Login   <cardon_v@epitech.net>
 // 
 // Started on  Tue Mar 24 11:37:46 2015 Valentin Cardon
-// Last update Thu Apr  2 15:40:30 2015 Valentin Cardon
+// Last update Fri Apr  3 16:34:01 2015 simon hure
 //
 
 #ifndef		_SDL_HPP_
@@ -16,6 +16,7 @@
 # include	<SDL/SDL.h>
 # include	<iostream>
 # include	<algorithm>
+# include	"../header/Exception.hh"
 # include	"../header/IDisplay.hpp"
 
 class		Sdl : public IDisplay
@@ -33,6 +34,7 @@ public:
   void		display(std::list<t_snake>, const t_food);
   e_move	move();
   SDL_Surface	*init();
+  int		check_env();
   void		print_snake(t_snake);
   void		print_head(t_snake);
   void		print_food(t_food);
