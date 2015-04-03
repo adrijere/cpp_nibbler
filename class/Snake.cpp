@@ -5,7 +5,7 @@
 ** Login   <mathon_j@mathonj>
 ** 
 ** Started on  Wed Mar 11 10:39:29 2015 Jérémy MATHON
-// Last update Thu Apr  2 14:19:14 2015 Valentin Cardon
+// Last update Fri Apr  3 13:55:05 2015 simon hure
 */
 
 #include	"../header/Snake.hpp"
@@ -46,7 +46,7 @@ const	t_food			Snake::get_food() const
 void				Snake::init_food(int const &x, int const &y)
 {
   std::list<t_snake>::iterator	it;
-
+  srand(time(NULL));
   this->_food.x = rand() % x;
   this->_food.y = rand() % y;
   for (it = this->snake.begin(); it != this->snake.end(); ++it)
