@@ -5,7 +5,7 @@
 // Login   <hure_s@epitech.net>
 // 
 // Started on  Mon Mar 30 11:19:11 2015 simon hure
-// Last update Thu Apr  2 15:40:53 2015 simon hure
+// Last update Fri Apr  3 16:01:43 2015 simon hure
 //
 
 #include	"ncurses.hh"
@@ -32,6 +32,17 @@ Ncurses::Ncurses(int x, int y)
   nodelay(stdscr, TRUE);
   x += 2;
   y += 2;
+  _game = newwin(y, x, 0, 0);
+  set_color_pair();
+  draw_border();
+  handle_resize();
+  wrefresh(_game);
+  _x = x;
+  _y = y;
+}
+
+void	Ncurses::set_color_pair()
+{
   init_pair(1, COLOR_RED, COLOR_BLACK);
   init_pair(2, COLOR_GREEN, COLOR_BLACK);
   init_pair(3, COLOR_YELLOW, COLOR_BLACK);
@@ -39,12 +50,6 @@ Ncurses::Ncurses(int x, int y)
   init_pair(5, COLOR_MAGENTA, COLOR_BLACK);
   init_pair(6, COLOR_BLUE, COLOR_BLACK);
   init_pair(7, COLOR_BLACK, COLOR_GREEN);
-  _game = newwin(y, x, 0, 0);
-  draw_border();
-  handle_resize();
-  wrefresh(_game);
-  _x = x;
-  _y = y;
 }
 
 void	Ncurses::win_quit()

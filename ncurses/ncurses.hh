@@ -5,7 +5,7 @@
 // Login   <hure_s@epitech.net>
 // 
 // Started on  Mon Mar 30 11:33:18 2015 simon hure
-// Last update Thu Apr  2 14:57:23 2015 simon hure
+// Last update Fri Apr  3 16:01:44 2015 simon hure
 //
 
 #ifndef _NCURSES_HH_
@@ -18,6 +18,7 @@
 #include <list>
 #include <ncurses.h>
 #include <unistd.h>
+#include "../header/Exception.hh"
 #include "../header/IDisplay.hpp"
 
 #define up_key 38
@@ -37,6 +38,7 @@ public:
   ~Ncurses();
   void display(std::list<t_snake> snake, const t_food food);
   t_move move();
+  void set_color_pair();
   void win_quit();
   void draw_border();
   void handle_resize();

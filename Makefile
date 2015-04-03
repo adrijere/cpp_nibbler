@@ -5,7 +5,7 @@
 ## Login   <mathon_j@epitech.net>
 ## 
 ## Started on  Tue Mar 24 09:51:26 2015 Jérémy MATHON
-## Last update Fri Apr  3 13:35:13 2015 Jérémy MATHON
+## Last update Fri Apr  3 15:23:51 2015 simon hure
 ##
 
 BIN		=	nibbler
@@ -21,13 +21,19 @@ NCURSES_PATH	=	./ncurses/
 SRC		=	./class/Library.cpp	\
 			./class/Snake.cpp	\
 			./class/main.cpp	\
+			./class/Exception.cpp	\
 			./class/Init.cpp
 
 OBJ		=	$(SRC:.cpp=.o)
 
-SDL_SRC		=	./sdl/init_sdl.cpp	
-XLIB_SRC	=	./libx/init_libx.cpp	
-NCURSES_SRC	=	./ncurses/init_ncurses.cpp 
+SDL_SRC		=	./sdl/init_sdl.cpp	\
+			./class/Exception.cpp
+
+XLIB_SRC	=	./libx/init_libx.cpp	\
+			./class/Exception.cpp
+
+NCURSES_SRC	=	./ncurses/init_ncurses.cpp \
+			./class/Exception.cpp
 
 SDL_OBJ		=	$(SDL_SRC:.cpp=.o)
 XLIB_OBJ	=	$(XLIB_SRC:.cpp=.o)
