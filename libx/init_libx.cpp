@@ -5,7 +5,7 @@
 // Login   <hure_s@epitech.net>
 // 
 // Started on  Thu Apr  2 10:16:31 2015 simon hure
-// Last update Fri Apr  3 11:53:47 2015 simon hure
+// Last update Fri Apr  3 14:21:56 2015 simon hure
 //
 
 #include	"libx.hh"
@@ -20,11 +20,10 @@ extern "C" IDisplay *create_t(int const &x, int const &y)
 Libx::Libx(int const &x, int const &y)
 {
   int	newx, newy;
-  extern char **environ;
 
   newx = x * 20;
   newy = y * 20;
-  if (check_env(environ) == -1)
+  if (check_env() == -1)
     {
       std::cerr << "Error : DISPLAY Environement variable needed!" << std::endl;
       exit (0);
@@ -36,6 +35,7 @@ Libx::Libx(int const &x, int const &y)
   XMapWindow(_me, _win);
   _gc = XCreateGC(_me, _win, 0, NULL);
   XStoreName(_me, _win, "Nibbler");
+  _dtime = 200000;
   _cmap = DefaultColormap(_me, 0);
   XParseColor(_me, _cmap, "#990000", &_xred);
   XParseColor(_me, _cmap, "#E6E600", &_xyel);
@@ -48,9 +48,10 @@ Libx::~Libx()
 
 }
 
-int	Libx::check_env(char **environ)
+int	Libx::check_env()
 {
   int	i;
+  extern char **environ;
   std::string tmp;
 
   i = 0;
@@ -74,7 +75,7 @@ t_move	Libx::move()
 {
   XEvent	rep;
   
-  usleep(200000);
+  usleep(_dtime);
   if (XCheckMaskEvent(_me, KeyPressMask ,&rep) == 0)
     {
       XFlush(_me);
