@@ -5,7 +5,7 @@
 // Login   <hure_s@epitech.net>
 // 
 // Started on  Thu Apr  2 10:16:31 2015 simon hure
-// Last update Fri Apr  3 17:39:29 2015 simon hure
+// Last update Fri Apr  3 18:57:01 2015 simon hure
 //
 
 #include	"libx.hh"
@@ -72,9 +72,9 @@ void	Libx::draw_border()
 
 int	Libx::check_env()
 {
-  int	i;
-  extern char **environ;
-  std::string tmp;
+  int		i;
+  extern char	**environ;
+  std::string	tmp;
 
   i = 0;
   while (environ[i])

@@ -5,7 +5,7 @@
 // Login   <hure_s@epitech.net>
 // 
 // Started on  Mon Mar 30 11:19:11 2015 simon hure
-// Last update Fri Apr  3 16:28:12 2015 simon hure
+// Last update Fri Apr  3 18:58:34 2015 simon hure
 //
 
 #include	"ncurses.hh"
@@ -62,9 +62,9 @@ void    Ncurses::speedup(int const &sn_x, int const &sn_y, int const &fo_x, int 
 
 int     Ncurses::check_env()
 {
-  int   i;
-  extern char **environ;
-  std::string tmp;
+  int		i;
+  extern char	**environ;
+  std::string	tmp;
 
   i = 0;
   while (environ[i])
