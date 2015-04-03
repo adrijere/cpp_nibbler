@@ -5,7 +5,7 @@
 // Login   <hure_s@epitech.net>
 // 
 // Started on  Thu Apr  2 10:16:31 2015 simon hure
-// Last update Fri Apr  3 16:21:18 2015 simon hure
+// Last update Fri Apr  3 17:29:46 2015 simon hure
 //
 
 #include	"libx.hh"
@@ -41,6 +41,9 @@ Libx::Libx(int const &x, int const &y)
   XStoreName(_me, _win, "Nibbler");
   _dtime = 200000;
   set_color_value();
+  _x = newx + 40;
+  _y = newy + 40;
+  draw_border();
   Atom wmDelete=XInternAtom(_me, "WM_DELETE_WINDOW", True);
   XSetWMProtocols(_me, _win, &wmDelete, 1);
 }
@@ -49,14 +52,22 @@ void	Libx::set_color_value()
 {
   _cmap = DefaultColormap(_me, 0);
   XParseColor(_me, _cmap, "#990000", &_xred);
+  XParseColor(_me, _cmap, "#007FFF", &_xblu);
   XParseColor(_me, _cmap, "#E6E600", &_xyel);
   XAllocColor(_me, _cmap, &_xred);
+  XAllocColor(_me, _cmap, &_xblu);
   XAllocColor(_me, _cmap, &_xyel);
 }
 
 Libx::~Libx()
 {
 
+}
+
+void	Libx::draw_border()
+{
+  XSetForeground(_me, _gc, _xblu.pixel);
+  XSetFillStyle(_me, _gc, FillSolid);
 }
 
 int	Libx::check_env()
@@ -147,6 +158,7 @@ void	Libx::display(std::list<t_snake> snake, const t_food food)
   XClearWindow(_me, _win);
   XSetForeground(_me, _gc, WhitePixel(_me, _screen_num));
   XSetFillStyle(_me, _gc, FillSolid);
+  draw_border();
   for_each(snake.begin(), snake.end(), bind1st(std::mem_fun(&Libx::print_snake), this));
   print_head(snake.begin()->x * 20, snake.begin()->y * 20);
   print_food(food.x * 20, food.y * 20);

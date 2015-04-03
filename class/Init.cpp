@@ -5,7 +5,7 @@
 // Login   <hure_s@epitech.net>
 // 
 // Started on  Tue Mar 24 12:55:23 2015 simon hure
-// Last update Thu Apr  2 16:19:01 2015 simon hure
+// Last update Fri Apr  3 16:46:44 2015 simon hure
 
 #include "../header/Init.hh"
 
@@ -49,22 +49,20 @@ int		Init::loop_game(int const &x, int const &y, IDisplay *Window)
 
 int	Init::check_arg(int const &x, int const &y, const std::string &lib)
 {
-  if (x < 10 || x > 80)
+  try 
     {
-      std::cerr << "Error : width must be between 10 and 80." << std::endl;
-      return (1);
-    }
-  else if (y < 10 || y > 80)
-    {
-      std::cerr << "Error : height must be between 10 and 80." << std::endl;
-      return (1);
-    }
-  else if (lib != "lib_nibbler_sdl.so" && lib != "lib_nibbler_ncurses.so" && lib != "lib_nibbler_\
+      if (x < 10 || x > 80)
+	throw(ArgumentException("width must be between 10 and 80"));
+      else if (y < 10 || y > 80)
+	throw(ArgumentException("height must be between 10 and 80"));
+      else if (lib != "lib_nibbler_sdl.so" && lib != "lib_nibbler_ncurses.so" && lib != "lib_nibbler_\
 xlib.so")
+	throw(ArgumentException("Wrong library name.\nLibrary must be :\nlib_nibbler_sdl.so\nlib_nibbler_ncurses.so\nlib_ni\
+bbler_xlib.so"));
+    }
+  catch (const Exception e)
     {
-      std::cerr << "Error : library must be :\nlib_nibbler_sdl.so\nlib_nibbler_ncurses.so\nlib_ni\
-bbler_xlib.so" << std::endl;
-      return (1);
+      std::cerr << e.what() << std::endl;
     }
   return (0);
 }
@@ -74,18 +72,21 @@ int	Init::start(int ac, char **av)
   int                           width;
   int                           height;
 
-  if (ac != 4)
-    {
-      std::cerr << "Usage : ./nibbler <width> <height> <graphic library>" << std::endl;
-      return (-1);
-    }
+try
+  {
+    if (ac != 4)
+      throw(ArgumentException("Usage : ./nibbler <width> <height> <graphic library>"));
+  }
+ catch (const Exception e)
+   {
+     std::cerr << e.what() << std::endl;
+   }
   std::istringstream            buffer(av[1]);
   std::istringstream            buffer2(av[2]);
 
   buffer >> width;
   buffer2 >> height;
-  if (check_arg(width, height, av[3]) == 1)
-    return (-1);
+  check_arg(width, height, av[3]);
   load_library(width, height, av[3]);
   return (0);
 }

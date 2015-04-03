@@ -5,7 +5,7 @@
 // Login   <hure_s@epitech.net>
 // 
 // Started on  Tue Mar 24 13:03:50 2015 simon hure
-// Last update Tue Mar 24 15:29:47 2015 simon hure
+// Last update Fri Apr  3 16:38:06 2015 simon hure
 //
 
 #ifndef _INIT_HH_
@@ -14,6 +14,7 @@
 #include <iostream>
 #include <string>
 #include <sstream>
+#include "Exception.hh"
 #include "Snake.hpp"
 #include "IDisplay.hpp"
 

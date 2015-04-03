@@ -5,7 +5,7 @@
 // Login   <hure_s@epitech.net>
 // 
 // Started on  Thu Apr  2 10:18:27 2015 simon hure
-// Last update Fri Apr  3 15:45:26 2015 simon hure
+// Last update Fri Apr  3 17:16:58 2015 simon hure
 //
 
 #ifndef	_LIBX_
@@ -32,6 +32,7 @@ private:
   int	_screen_num;
   XColor _xred;
   XColor _xyel;
+  XColor _xblu;
   int _dtime;
   Colormap _cmap;
   GC _gc;
@@ -45,6 +46,7 @@ public:
   void speedup(int const &, int const &, int const &, int const &);
   void print_snake(t_snake const);
   t_move move();
+  void draw_border();
   void set_color_value();
   void print_head(int const &, int const &);
   void print_food(int const &, int const &);

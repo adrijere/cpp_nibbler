@@ -5,7 +5,7 @@
 ** Login   <mathon_j@mathonj>
 ** 
 ** Started on  Tue Mar 24 09:16:12 2015 Jérémy MATHON
-// Last update Mon Mar 30 16:11:15 2015 simon hure
+// Last update Fri Apr  3 17:14:23 2015 simon hure
 */
 
 #include	<string>
@@ -16,20 +16,33 @@ typedef       IDisplay        *create_t(int const &, const int &);
 
 int		Init::check_lib(const void *lib)
 {
-  if (!lib)
+  try
     {
-      std::cerr << "Cannot load library : " << dlerror() << std::endl;
-      return (1);
+      if (!lib)
+	throw(DlException("Cannot load library"));
+    }
+  catch (const Exception e)
+    {
+      std::cerr << e.what() << std::endl;
     }
   return (0);
 }
 
 int		Init::check_symbol(const char *dlsysm_error)
 {
-  if (dlsysm_error)
+  try
     {
-      std::cerr << "Cannot load symbol : " << dlsysm_error << std::endl;
-      return (1);
+      if (dlsysm_error)
+	{
+	  std::string r;
+	  r = "Cannot load symbol ";
+	  r += dlsysm_error;
+	  throw(DlException(r));
+	}
+    }
+  catch (const Exception e)
+    {
+      std::cerr << e.what() << std::endl;
     }
   return (0);
 }
