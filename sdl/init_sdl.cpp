@@ -5,7 +5,7 @@
 // Login   <cardon_v@epitech.net>
 // 
 // Started on  Tue Mar 24 11:36:54 2015 Valentin Cardon
-// Last update Thu Apr  2 17:20:56 2015 Valentin Cardon
+// Last update Fri Apr  3 16:09:41 2015 Valentin Cardon
 //
 
 #include	"sdl.hpp"
@@ -26,7 +26,7 @@ Sdl::Sdl(int x, int y)
 
 void	Sdl::win_quit()
 {
-
+  SDL_Quit();
 }
 
 SDL_Surface	*Sdl::init()
@@ -112,6 +112,8 @@ e_move		Sdl::move()
     case SDL_KEYDOWN:
       switch (this->event.key.keysym.sym)
 	{
+	case SDLK_ESCAPE:
+	  return (ESC);
 	case SDLK_LEFT:
 	  return (LEFT);
 	case SDLK_RIGHT:
