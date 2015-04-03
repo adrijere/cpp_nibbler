@@ -5,7 +5,7 @@
 // Login   <hure_s@epitech.net>
 // 
 // Started on  Tue Mar 24 12:55:23 2015 simon hure
-// Last update Wed Apr  1 19:41:23 2015 simon hure
+// Last update Thu Apr  2 16:19:01 2015 simon hure
 
 #include "../header/Init.hh"
 
@@ -60,10 +60,10 @@ int	Init::check_arg(int const &x, int const &y, const std::string &lib)
       return (1);
     }
   else if (lib != "lib_nibbler_sdl.so" && lib != "lib_nibbler_ncurses.so" && lib != "lib_nibbler_\
-opengl.so")
+xlib.so")
     {
       std::cerr << "Error : library must be :\nlib_nibbler_sdl.so\nlib_nibbler_ncurses.so\nlib_ni\
-bbler_opengl.so" << std::endl;
+bbler_xlib.so" << std::endl;
       return (1);
     }
   return (0);

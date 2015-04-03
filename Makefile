@@ -5,17 +5,17 @@
 ## Login   <mathon_j@epitech.net>
 ## 
 ## Started on  Tue Mar 24 09:51:26 2015 Jérémy MATHON
-## Last update Wed Apr  1 18:16:59 2015 Valentin Cardon
+## Last update Fri Apr  3 11:54:32 2015 simon hure
 ##
 
 BIN		=	nibbler
 
 SDL_NAME	=	lib_nibbler_sdl.so
-OPENGL_NAME	=	lib_nibbler_opengl.so
+XLIB_NAME	=	lib_nibbler_xlib.so
 NCURSES_NAME	=	lib_nibbler_ncurses.so
 
 SDL_PATH	=	./sdl/
-OPENGL_PATH	=	./opengl/
+XLIB_PATH	=	./libx/
 NCURSES_PATH	=	./ncurses/
 
 SRC		=	./class/Library.cpp	\
@@ -23,12 +23,14 @@ SRC		=	./class/Library.cpp	\
 			./class/main.cpp	\
 			./class/Init.cpp
 
-SDL_SRC		=	./sdl/init_sdl.cpp	\
-#OPENGL_SRC	=
+OBJ		=	$(SRC:.cpp=.o)
+
+SDL_SRC		=	./sdl/init_sdl.cpp	
+XLIB_SRC	=	./libx/init_libx.cpp	
 NCURSES_SRC	=	./ncurses/init_ncurses.cpp 
 
 SDL_OBJ		=	$(SDL_SRC:.cpp=.o)
-#OPENGL_OBJ	=	$(OPENGL_SRC:.cpp=.o)
+XLIB_OBJ	=	$(XLIB_SRC:.cpp=.o)
 NCURSES_OBJ	=	$(NCURSES_SRC:.cpp=.o)
 
 CC		=	g++
@@ -36,27 +38,27 @@ CC		=	g++
 CXXFLAGS	+=	-fpic -I ./
 
 SDL_LDFLAGS	+=	-shared -lSDL
-#OPENGL_LDFLAGS	+=	-shared -lSDl -lGL -lGLU
+XLIB_LDFLAGS	+=	-shared -lX11
 NCURSES_LDFLAGS	+=	-shared -lncurses
 
-all:			$(NCURSES_NAME) $(SDL_NAME)
+all:			$(NCURSES_NAME) $(SDL_NAME) $(XLIB_NAME) $(BIN)
 
 $(SDL_NAME):		$(SDL_OBJ)
 			$(CC) $(SDL_OBJ) -o $(SDL_NAME) $(SDL_LDFLAGS)
-			g++ $(SRC) -ldl -I ./ -o $(BIN)
 
-#$(OPENGL_NAME):		$(OPENGL_OBJ)
-#			$(CC) $(OPENGL_OBJ) -o $(OPENGL_NAME) $(OPENGL_LDFLAGS)
+$(XLIB_NAME):		$(XLIB_OBJ)
+			$(CC) $(XLIB_OBJ) -o $(XLIB_NAME) $(XLIB_LDFLAGS)
 
 $(NCURSES_NAME):	$(NCURSES_OBJ)
 			$(CC) $(NCURSES_OBJ) -o $(NCURSES_NAME) $(NCURSES_LDFLAGS)
-			g++ $(SRC) -ldl -I ./ -o $(BIN)
 
+$(BIN):			$(OBJ)
+			$(CC) $(OBJ) -ldl -I ./ -o $(BIN)
 
 clean:
-			rm -f $(NCURSES_OBJ) $(SDL_OBJ)
+			rm -f $(NCURSES_OBJ) $(SDL_OBJ) $(XLIB_OBJ)
 
 fclean:			clean
-			rm -f $(NCURSES_NAME) $(SDL_NAME) $(BIN)
+			rm -f $(NCURSES_NAME) $(SDL_NAME) $(XLIB_NAME) $(BIN)
 
 re:			fclean all
