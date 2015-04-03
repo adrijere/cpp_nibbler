@@ -5,7 +5,7 @@
 // Login   <cardon_v@epitech.net>
 // 
 // Started on  Tue Mar 24 11:37:46 2015 Valentin Cardon
-// Last update Thu Apr  2 14:26:49 2015 Valentin Cardon
+// Last update Thu Apr  2 15:40:30 2015 Valentin Cardon
 //
 
 #ifndef		_SDL_HPP_
@@ -15,7 +15,7 @@
 
 # include	<SDL/SDL.h>
 # include	<iostream>
-#include	<algorithm>
+# include	<algorithm>
 # include	"../header/IDisplay.hpp"
 
 class		Sdl : public IDisplay
